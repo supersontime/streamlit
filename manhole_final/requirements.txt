@@ -7,3 +7,4 @@ geopy
 plotly.express
 streamlit_option_menu
 streamlit_js_eval
+openpyxl
