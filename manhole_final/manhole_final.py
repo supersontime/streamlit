@@ -16,8 +16,8 @@ now_date = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hou
 # ----------------------------------------------- ▼ 함수 생성 START ▼ -----------------------------------------------
 # 데이터 파일 읽기
 def load_data():
-    manhole_details = pd.read_excel('./맨홀관리대장_서식.xlsx')
-    manhole_search = pd.read_csv('./manhole_search.csv', encoding='euc-kr')
+    manhole_details = pd.read_excel('./streamlit/manhole_final/맨홀관리대장_서식.xlsx')
+    manhole_search = pd.read_csv('./streamlit/manhole_final/manhole_search.csv', encoding='euc-kr')
     return manhole_details, manhole_search
 
 manhole_details, manhole_search = load_data()
