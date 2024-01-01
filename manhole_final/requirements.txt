@@ -6,6 +6,7 @@ keras
 haversine
 urllib
 streamlit
+streamlit_option_menu
 folium
 branca
 geopy
