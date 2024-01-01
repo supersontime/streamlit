@@ -3,7 +3,7 @@ numpy
 datetime
 joblib
 streamlit
-geopy.geocoders
+geopy
 ssl
 plotly.express
 streamlit_option_menu
