@@ -4,8 +4,6 @@ datetime
 joblib
 streamlit
 geopy
-ssl
 plotly.express
 streamlit_option_menu
-io
 streamlit_js_eval
