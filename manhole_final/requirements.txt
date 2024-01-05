@@ -7,4 +7,9 @@ geopy
 plotly.express
 streamlit_option_menu
 streamlit_js_eval
+geopy.geocoders
 openpyxl
+folium
+streamlit_folium
+openpyxl_image_loader
+io
