@@ -85,7 +85,7 @@ def main():
     st.markdown(custom_css, unsafe_allow_html=True)
     
     with st.sidebar:
-        choose = option_menu("Main Menu", ["맨홀 관리 현황", "전수 조사 현황", "점검 대상"],
+        choose = option_menu("Main Menu", ["맨홀 관리 현황", "전수 조사 정보", "점검 대상 도출"],
                              icons=['gear', 'graph-up-arrow', 'check-circle'],
                              menu_icon="menu-button-wide", default_index=0,
                              styles={
