@@ -70,6 +70,20 @@ def add_location_marker(map_obj, lat, lon, popup_text):
 st.set_page_config(layout="wide")
 
 def main():
+    # 사용자 정의 CSS를 스트림릿 앱에 삽입
+    custom_css = """
+    <style>
+        
+        /* 선택된 옵션의 배경 색상 변경 */
+        .st-bx .st-dv, .st-bx .st-eg {
+            background-color: #FFB74D;
+        }
+
+        
+    </style>
+    """
+    st.markdown(custom_css, unsafe_allow_html=True)
+    
     with st.sidebar:
         choose = option_menu("Main Menu", ["맨홀 관리 현황", "전수 조사 현황", "점검 대상"],
                              icons=['gear', 'graph-up-arrow', 'check-circle'],
