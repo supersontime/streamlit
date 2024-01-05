@@ -309,7 +309,7 @@ def main():
         if len(overdue_inspections) > 0:
             col110, col111 = st.columns([0.5, 0.5])
             with col110:
-                st.error("점검이 필요합니다 (6개월 이상 미점검).")
+                st.error("점검이 필요합니다. (6개월 이상 미점검)")
                 overdue_inspections_sorted = overdue_inspections.sort_values(by='경과일', ascending=False)
                 st.dataframe(overdue_inspections_sorted[['관리번호', '설치주소', '외부점검일자', '경과일']])
 
