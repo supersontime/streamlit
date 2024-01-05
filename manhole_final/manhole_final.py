@@ -1,3 +1,4 @@
+%%writefile manhole_final.py
 
 # 라이브러리 불러오기 
 import pandas as pd
@@ -37,10 +38,16 @@ def geocode(address):
     except Exception as e:
         print(f"Geocoding error: {e}")
         return None, None
-    
+
+color_sequence = [
+    "#FF8400",   # 어두움
+    "#FFA500",
+    "#FFC594"  # 밝음
+]
+
 def plot_pie_chart(df, column, title):
     fig = px.pie(df, names=column, title=title,
-                 color_discrete_sequence=['red'])
+                 color_discrete_sequence=color_sequence)
     return fig
 
 # 그룹별 맨홀 재질 파이 차트 그리기
@@ -49,7 +56,7 @@ def plot_grouped_pie_chart(df, group_column, pie_column):
     figs = []
     for name, group in grouped:
         fig = px.pie(group, names=pie_column, title=f"{name}",
-                    color_discrete_sequence=['red'])
+                    color_discrete_sequence=color_sequence)
         figs.append(fig)
     return figs
 
@@ -73,7 +80,7 @@ def main():
                                  "container": {"padding": "4!important", "background-color": "#fafafa"},
                                  "icon": {"color": "black", "font-size": "25px"},
                                  "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#000000"},
-                                 "nav-link-selected": {"background-color": "#ED2024"},
+                                 "nav-link-selected": {"background-color": ["rgb(86, 79, 78)"]},
                              }
                              )
     
@@ -267,39 +274,6 @@ def main():
                 folium_static(m)
             else:
                 st.error(f"관리번호 '{selected_manhole_number}'의 맨홀 위치를 찾을 수 없습니다.")
-
-#             # 엑셀 파일 로드
-#             workbook = openpyxl.load_workbook('manhole_search.xlsx', data_only=True)
-#             sheet = workbook.active
-
-#             # 이미지 로더 초기화
-#             image_loader = SheetImageLoader(sheet)
-
-#             # 현장사진 열을 찾습니다.
-#             image_column_index = None
-#             for i, col in enumerate(sheet.iter_cols(values_only=True), start=1):
-#                 if col[0] == '현장사진':  # 열 제목이 '현장사진'인 열을 찾습니다.
-#                     image_column_index = i
-#                     break
-
-#             if image_column_index is not None:
-#                 # 관리번호의 행을 찾습니다.
-#                 manhole_row_index = None
-#                 for i, row in enumerate(sheet.iter_rows(values_only=True), start=1):
-#                     if row[0] == selected_manhole_number:
-#                         manhole_row_index = i
-#                         break
-
-#                 if manhole_row_index is not None:
-#                     cell = sheet.cell(row=manhole_row_index, column=image_column_index)
-#                     if image_loader.image_in(cell):
-#                         pil_image = image_loader.get(cell)
-#                         with BytesIO() as output:
-#                             pil_image.save(output, format="PNG")
-#                             data = output.getvalue()
-#                         st.image(data, caption='현장 사진', use_column_width=True)
-#             else:
-#                 st.error('현장사진 열을 찾을 수 없습니다.')
 
 
         st.write("---")  # 구분선 추가
