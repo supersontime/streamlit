@@ -2,7 +2,7 @@ pandas
 datetime
 streamlit
 Nominatim
-geopy.geocoders
+geopy
 streamlit_option_menu
 streamlit_js_eval
 plotly.express
