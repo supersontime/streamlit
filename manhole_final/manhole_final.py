@@ -295,18 +295,18 @@ def main():
         if len(overdue_inspections) > 0:
             col110, col111 = st.columns([0.5, 0.5])
             with col110:
-            st.error("점검이 필요합니다 (6개월 이상 미점검).")
-            overdue_inspections_sorted = overdue_inspections.sort_values(by='경과일', ascending=False)
-            st.dataframe(overdue_inspections_sorted[['관리번호', '설치주소', '외부점검일자', '경과일']])
+                st.error("점검이 필요합니다 (6개월 이상 미점검).")
+                overdue_inspections_sorted = overdue_inspections.sort_values(by='경과일', ascending=False)
+                st.dataframe(overdue_inspections_sorted[['관리번호', '설치주소', '외부점검일자', '경과일']])
 
         # 6개월 이내에 점검된 맨홀 표시
         recent_inspections = manhole_search[~manhole_search['inspection_due']]
         if len(recent_inspections) > 0:
             col210, col211 = st.columns([0.5, 0.5])
             with col210:
-            st.success("6개월 이내에 점검된 맨홀입니다.")
-            recent_inspections_sorted = recent_inspections.sort_values(by='경과일', ascending=False)
-            st.dataframe(recent_inspections_sorted[['관리번호', '설치주소', '외부점검일자', '경과일']])
+                st.success("6개월 이내에 점검된 맨홀입니다.")
+                recent_inspections_sorted = recent_inspections.sort_values(by='경과일', ascending=False)
+                st.dataframe(recent_inspections_sorted[['관리번호', '설치주소', '외부점검일자', '경과일']])
 
     #elif choose == "메뉴 이름3... 등등":
         #st.write("메뉴 이름3... 등등에 해당하는 페이지입니다.")
