@@ -236,7 +236,62 @@ def main():
         elif material == '지역':
             area_options = manhole_search['관할지자체'].unique()
             selected_area = st.selectbox("지역 선택", area_options, key='area_material')
-            filtered_data = manhole_search[manhole_sear출")
+            filtered_data = manhole_search[manhole_search['관할지자체'] == selected_area]
+            area_chart = plot_pie_chart(filtered_data, '맨홀뚜껑재질', f"{selected_area} 맨홀 재질 분류")
+            st.plotly_chart(area_chart)
+        elif material == '관리기관':
+            management_options = manhole_search['관리기관'].unique()
+            selected_management = st.selectbox("관리기관 선택", management_options, key='management_material')
+            filtered_data = manhole_search[manhole_search['관리기관'] == selected_management]
+            management_chart = plot_pie_chart(filtered_data, '맨홀뚜껑재질', f"{selected_management} 맨홀 재질 분류")
+            st.plotly_chart(management_chart)
+
+        # 맨홀 목록 시각화 -> 전체, 지역, 관리기관별 선택 요소 반영하여 교체 대상 비율 제시(파이차트)
+        st.info("3. 맨홀 상태 분류")
+        visualization_option = st.radio("분류 옵션 선택", ('전체', '지역', '관리기관'), key='visualization_option')
+
+        if visualization_option == '전체':
+            pie_chart = plot_pie_chart(manhole_search, '교체', '전체 맨홀 상태 분류')
+            st.plotly_chart(pie_chart)
+        elif visualization_option == '지역':
+            area_options = manhole_search['관할지자체'].unique()
+            selected_area = st.selectbox("지역 선택", area_options, key='area_selection_viz')
+            filtered_data = manhole_search[manhole_search['관할지자체'] == selected_area]
+            area_chart = plot_pie_chart(filtered_data, '교체', f"{selected_area} 맨홀 상태 분류")
+            st.plotly_chart(area_chart)
+        elif visualization_option == '관리기관':
+            management_options = manhole_search['관리기관'].unique()
+            selected_management = st.selectbox("관리기관 선택", management_options, key='management_selection_viz')
+            filtered_data = manhole_search[manhole_search['관리기관'] == selected_management]
+            management_chart = plot_pie_chart(filtered_data, '교체', f"{selected_management} 맨홀 상태 분류")
+            st.plotly_chart(management_chart)
+
+    # Tab3에 해당
+    if choose == "점검 대상":
+        # 관할지자체 선택
+        selected_area = st.selectbox("관할지자체 선택", manhole_search['관할지자체'].unique(), key='area_selection')
+        area_manholes = manhole_search[manhole_search['관할지자체'] == selected_area]
+
+        # 관할지자체에 따른 관리번호 선택
+        selected_manhole_number = st.selectbox("관리번호 선택", area_manholes['관리번호'].unique(), key='manhole_selection')
+
+        # 맨홀 위치 표시 버튼
+        if st.button("맨홀 위치 표시"):
+            selected_address = area_manholes[area_manholes['관리번호'] == selected_manhole_number]['설치주소'].iloc[0]
+            lat, lon = geocode(selected_address)
+            if lat and lon:
+                m = folium.Map(location=[lat, lon], zoom_start=16)
+                # 위치 표시 추가
+                add_location_marker(m, lat, lon, "맨홀 위치")
+                # 대시보드에 지도 표시
+                folium_static(m)
+            else:
+                st.error(f"관리번호 '{selected_manhole_number}'의 맨홀 위치를 찾을 수 없습니다.")
+
+
+        st.write("---")  # 구분선 추가
+        
+        # 점검 필요 여부 확인
         st.write("맨홀 외부점검 상태 확인")
 
         # 마지막 외부 점검 이후 경과일 계산
