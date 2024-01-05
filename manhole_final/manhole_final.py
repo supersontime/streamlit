@@ -88,11 +88,11 @@ def main():
         manhole_numbers = manhole_search['관리번호'].unique().tolist()
         st.title(':hole: Manhole Master')
         #col110, col111, col112, col113 = st.columns([0.2, 0.3, 0.3, 0.3])
-        col110, col111 = st.columns([1, 0])
-        with col110:
-            st.markdown("")
-            st.info("맨홀 목록 조회")
-            st.markdown("")
+        #col110, col111 = st.columns([1, 0])
+        #with col110:
+        st.markdown("")
+        st.info("맨홀 목록 조회")
+        st.markdown("")
 
         # 필터링 및 지도 표시에 사용할 열 선택
         selected_columns = ['관리번호', '맨홀종류', '관할지자체', '맨홀뚜껑재질',
@@ -281,7 +281,7 @@ def main():
         
         # 점검 필요 여부 확인
         st.info("2. 점검 정보")
-        st.write("맨홀 외부점검 상태 확인:")
+        st.write("맨홀 외부점검 상태 확인")
 
         # 마지막 외부 점검 이후 경과일 계산
         today = pd.Timestamp('today')
