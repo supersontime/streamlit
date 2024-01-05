@@ -227,7 +227,7 @@ def main():
             st.plotly_chart(management_chart)
             
         # 맨홀 재질 분류 -> 콘크리트/주철을 전체, 지역, 관리기관별 선택 요소 반영하여 제시(파이차트)
-        st.info("2. 재질 분류")
+        st.info("2. 맨홀 재질 분류")
         material = st.radio("분류 옵션 선택", ('전체', '지역', '관리기관'), key='material')
 
         if material == '전체':
