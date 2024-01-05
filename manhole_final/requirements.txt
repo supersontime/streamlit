@@ -11,4 +11,3 @@ openpyxl
 folium
 streamlit_folium
 openpyxl_image_loader
-io
