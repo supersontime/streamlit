@@ -267,7 +267,7 @@ def main():
             st.plotly_chart(management_chart)
 
     # Tab3에 해당
-    if choose == "점검 대상":
+    if choose == "점검 대상 도출":
         # 관할지자체 선택
         selected_area = st.selectbox("관할지자체 선택", manhole_search['관할지자체'].unique(), key='area_selection')
         area_manholes = manhole_search[manhole_search['관할지자체'] == selected_area]
