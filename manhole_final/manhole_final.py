@@ -97,7 +97,7 @@ def main():
                              )
     
     # Tab1에 해당
-    if choose == "맨홀 관리 현황":
+    if choose == "맨홀 현황 정보":
         # 맨홀 데이터에서 관리번호 추출
         manhole_numbers = manhole_search['관리번호'].unique().tolist()
         st.title(':hole: Manhole Master')
@@ -205,7 +205,7 @@ def main():
             #download_csv(download_df)
             
     # Tab2에 해당
-    if choose == "전수 조사 현황":
+    if choose == "전수 조사 점검":
         # 조사 진행 상황 -> 미조사/진행중/완료 => 전체, 지역, 관리기관별 선택 요소 반영하여 제시(파이차트)
         st.info("1. 조사 진행 상황")
         survey = st.radio("분류 옵션 선택", ('전체', '지역', '관리기관'), key='survey')
@@ -267,7 +267,7 @@ def main():
             st.plotly_chart(management_chart)
     
     # Tab3에 해당
-    if choose == "점검 대상":
+    if choose == "점검 정보 확인":
         st.info("1. 세부 정보 확인")
         # 관할지자체 선택
         selected_area = st.selectbox("관할지자체 선택", manhole_search['관할지자체'].unique(), key='area_selection')
@@ -294,7 +294,7 @@ def main():
         
         
         # 점검 필요 여부 확인
-        st.info("2. 점검 정보")
+        st.info("2. 점검 대상 도")
         st.write("맨홀 외부점검 상태 확인")
 
         # 마지막 외부 점검 이후 경과일 계산
