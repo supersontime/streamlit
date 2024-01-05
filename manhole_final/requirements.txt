@@ -1,13 +1,11 @@
 pandas
-numpy
 datetime
-joblib
 streamlit
-geopy
-plotly.express
+Nominatim
 streamlit_option_menu
 streamlit_js_eval
-openpyxl
+plotly.express
 folium
 streamlit_folium
+openpyxl
 openpyxl_image_loader
