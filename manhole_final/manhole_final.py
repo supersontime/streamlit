@@ -268,6 +268,7 @@ def main():
 
     # Tab3에 해당
     if choose == "점검 대상 도출":
+        st.info("1. 세부 정보 확인")
         # 관할지자체 선택
         selected_area = st.selectbox("관할지자체 선택", manhole_search['관할지자체'].unique(), key='area_selection')
         area_manholes = manhole_search[manhole_search['관할지자체'] == selected_area]
@@ -292,6 +293,7 @@ def main():
         st.write("---")  # 구분선 추가
         
         # 점검 필요 여부 확인
+        st.info("2. 점검 대상 확인")
         st.write("맨홀 외부점검 상태 확인")
 
         # 마지막 외부 점검 이후 경과일 계산
