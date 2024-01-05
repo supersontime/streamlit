@@ -1,5 +1,3 @@
-%%writefile manhole_final.py
-
 # 라이브러리 불러오기 
 import pandas as pd
 import datetime
@@ -40,9 +38,9 @@ def geocode(address):
         return None, None
 
 color_sequence = [
-    "#FF8400",   # 어두움
-    "#FFA500",
-    "#FFC594"  # 밝음
+    "#FF6D00",
+    "#FFE0B2",   # 가장 밝음
+    "#FFB74D"
 ]
 
 def plot_pie_chart(df, column, title):
@@ -80,7 +78,7 @@ def main():
                                  "container": {"padding": "4!important", "background-color": "#fafafa"},
                                  "icon": {"color": "black", "font-size": "25px"},
                                  "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#000000"},
-                                 "nav-link-selected": {"background-color": ["rgb(86, 79, 78)"]},
+                                 "nav-link-selected": {"background-color": ["#FFB74D"]},
                              }
                              )
     
