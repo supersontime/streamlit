@@ -268,32 +268,8 @@ def main():
 
     # Tab3에 해당
     if choose == "점검 대상 도출":
-        st.info("1. 세부 정보 확인")
-        # 관할지자체 선택
-        selected_area = st.selectbox("관할지자체 선택", manhole_search['관할지자체'].unique(), key='area_selection')
-        area_manholes = manhole_search[manhole_search['관할지자체'] == selected_area]
-
-        # 관할지자체에 따른 관리번호 선택
-        selected_manhole_number = st.selectbox("관리번호 선택", area_manholes['관리번호'].unique(), key='manhole_selection')
-
-        # 맨홀 위치 표시 버튼
-        if st.button("맨홀 위치 표시"):
-            selected_address = area_manholes[area_manholes['관리번호'] == selected_manhole_number]['설치주소'].iloc[0]
-            lat, lon = geocode(selected_address)
-            if lat and lon:
-                m = folium.Map(location=[lat, lon], zoom_start=16)
-                # 위치 표시 추가
-                add_location_marker(m, lat, lon, "맨홀 위치")
-                # 대시보드에 지도 표시
-                folium_static(m)
-            else:
-                st.error(f"관리번호 '{selected_manhole_number}'의 맨홀 위치를 찾을 수 없습니다.")
-
-
-        st.write("---")  # 구분선 추가
-        
         # 점검 필요 여부 확인
-        st.info("2. 점검 대상 확인")
+        st.info("1. 점검 대상 확인")
         st.write("맨홀 외부점검 상태 확인")
 
         # 마지막 외부 점검 이후 경과일 계산
@@ -320,6 +296,30 @@ def main():
                 st.success("6개월 이내에 점검된 맨홀입니다.")
                 recent_inspections_sorted = recent_inspections.sort_values(by='경과일', ascending=False)
                 st.dataframe(recent_inspections_sorted[['관리번호', '설치주소', '외부점검일자', '경과일']])
+
+        st.info("2. 세부 정보 확인")
+        # 관할지자체 선택
+        selected_area = st.selectbox("관할지자체 선택", manhole_search['관할지자체'].unique(), key='area_selection')
+        area_manholes = manhole_search[manhole_search['관할지자체'] == selected_area]
+
+        # 관할지자체에 따른 관리번호 선택
+        selected_manhole_number = st.selectbox("관리번호 선택", area_manholes['관리번호'].unique(), key='manhole_selection')
+
+        # 맨홀 위치 표시 버튼
+        if st.button("맨홀 위치 표시"):
+            selected_address = area_manholes[area_manholes['관리번호'] == selected_manhole_number]['설치주소'].iloc[0]
+            lat, lon = geocode(selected_address)
+            if lat and lon:
+                m = folium.Map(location=[lat, lon], zoom_start=16)
+                # 위치 표시 추가
+                add_location_marker(m, lat, lon, "맨홀 위치")
+                # 대시보드에 지도 표시
+                folium_static(m)
+            else:
+                st.error(f"관리번호 '{selected_manhole_number}'의 맨홀 위치를 찾을 수 없습니다.")
+
+
+        st.write("---")  # 구분선 추가
 
     #elif choose == "메뉴 이름3... 등등":
         #st.write("메뉴 이름3... 등등에 해당하는 페이지입니다.")
