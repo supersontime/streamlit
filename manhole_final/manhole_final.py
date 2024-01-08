@@ -309,23 +309,27 @@ def main():
         if st.button("맨홀 정보 표시"):
             selected_address = area_manholes[area_manholes['관리번호'] == selected_manhole_number]['설치주소'].iloc[0]
             lat, lon = geocode(selected_address)
+            
+            # 현장사진 표시
+            image_directory = r'./manhole_img/'   # 파일 경로
+            image_path = image_directory + selected_manhole_number + ".png"
+
+            # 이미지 파일이 실제로 존재하는지 확인
+            if os.path.exists(image_path):
+                col310, col311 = st.columns([0.5, 0.5])
+                with col310:
+                    st.warning("해당 관리번호의 현장사진입니다.")
+                image = load_img(image_path, target_size=(240, 480))
+                st.image(image, caption=f'{selected_manhole_number} 현장 사진', width=800)
+            else:
+                st.error("해당 관리번호의 현장사진을 찾을 수 없습니다.")
+            
             if lat and lon:
                 m = folium.Map(location=[lat, lon], zoom_start=16)
                 # 위치 표시 추가
                 add_location_marker(m, lat, lon, "맨홀 위치")
                 # 대시보드에 지도 표시
                 folium_static(m)
-                
-                # 현장사진 표시
-                image_directory = r'./manhole_img'   # 파일 경로
-                image_path = os.path.join(image_directory, selected_manhole_number + ".png")
-
-                # 이미지 파일이 실제로 존재하는지 확인
-                if os.path.exists(image_path):
-                    image = Image.open(image_path)
-                    st.image(image, caption=f'{selected_manhole_number} 현장 사진', width=800)
-                else:
-                    st.error("해당 관리번호의 현장사진을 찾을 수 없습니다.")
                 
             else:
                 st.error(f"관리번호 '{selected_manhole_number}'의 맨홀 위치를 찾을 수 없습니다.")
