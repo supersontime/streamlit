@@ -306,7 +306,7 @@ def main():
         selected_manhole_number = st.selectbox("관리번호 선택", area_manholes['관리번호'].unique(), key='manhole_selection')
 
         # 맨홀 위치 표시 버튼
-        if st.button("맨홀 위치 표시"):
+        if st.button("맨홀 정보 표시"):
             selected_address = area_manholes[area_manholes['관리번호'] == selected_manhole_number]['설치주소'].iloc[0]
             lat, lon = geocode(selected_address)
             if lat and lon:
