@@ -11,6 +11,8 @@ from streamlit_folium import folium_static
 import openpyxl
 from openpyxl_image_loader import SheetImageLoader
 from io import BytesIO
+import os
+from tensorflow.keras.utils import load_img
 
 # 시간 정보 가져오기
 now_date = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)
