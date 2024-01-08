@@ -9,4 +9,5 @@ folium
 streamlit_folium
 openpyxl
 openpyxl_image_loader
-keras
+np_utils
+
