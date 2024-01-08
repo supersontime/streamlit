@@ -313,7 +313,7 @@ def main():
             lat, lon = geocode(selected_address)
             
             # 현장사진 표시
-            image_directory = r'./manhole_img/'   # 파일 경로
+            image_directory = r'./manhole_img_01/'   # 파일 경로
             image_path = image_directory + selected_manhole_number + ".png"
 
             # 이미지 파일이 실제로 존재하는지 확인
