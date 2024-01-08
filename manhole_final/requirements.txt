@@ -9,5 +9,8 @@ folium
 streamlit_folium
 openpyxl
 openpyxl_image_loader
+tensorflow
+keras
 np_utils
+
 
