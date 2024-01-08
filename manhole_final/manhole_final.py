@@ -315,6 +315,18 @@ def main():
                 add_location_marker(m, lat, lon, "맨홀 위치")
                 # 대시보드에 지도 표시
                 folium_static(m)
+                
+                # 현장사진 표시
+                image_directory = r'./manhole_img'   # 파일 경로
+                image_path = os.path.join(image_directory, selected_manhole_number + ".png")
+
+                # 이미지 파일이 실제로 존재하는지 확인
+                if os.path.exists(image_path):
+                    image = Image.open(image_path)
+                    st.image(image, caption=f'{selected_manhole_number} 현장 사진', width=800)
+                else:
+                    st.error("해당 관리번호의 현장사진을 찾을 수 없습니다.")
+                
             else:
                 st.error(f"관리번호 '{selected_manhole_number}'의 맨홀 위치를 찾을 수 없습니다.")
 
